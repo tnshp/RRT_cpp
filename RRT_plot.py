@@ -1,6 +1,7 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 import matplotlib.patches as patches
+import os 
 import numpy as np
 
 def plot_points(x_values, y_values, connections = [], obstacles = [], path =[]):
@@ -39,8 +40,12 @@ def plot_points(x_values, y_values, connections = [], obstacles = [], path =[]):
     plt.grid(False)
     plt.show()
 
-df = pd.read_csv('RRT_points.txt', header= None)
-obstacles_data = pd.read_csv('RRT_environment.txt', header=None)
+script_dir = os.path.dirname(os.path.relpath(__file__))
+point_path = os.path.join(script_dir, "RRT_points.txt")
+obs_path = os.path.join(script_dir, 'RRT_environment.txt')
+
+df = pd.read_csv(point_path, header= None)
+obstacles_data = pd.read_csv(obs_path, header=None)
 
 data = df.values
 X = df.iloc[:,0].values
